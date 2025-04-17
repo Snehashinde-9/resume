@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneha Shinde - Resume</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-bg: #f5f5f5;
+            --light-text: #ecf0f1;
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            transition: var(--transition);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(52, 152, 219, 0.9));
+            z-index: 1;
+        }
+        
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin-bottom: 20px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            overflow: hidden;
+        }
+        
+        .avatar-placeholder {
+            font-size: 60px;
+            color: #888;
+        }
+        
+        .name {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            padding: 6px 12px;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-item i {
+            font-size: 18px;
+        }
+        
+        .contact-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: white;
+            box-shadow: var(--card-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+        
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Main Content */
+        main {
+            padding: 40px 0;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-title {
+            position: relative;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        /* Objectives */
+        .objectives {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        /* Education */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .education-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            transition: var(--transition);
+        }
+        
+        .education-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        
+        .education-level {
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .college {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .university {
+            color: #666;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+        
+        .percentage {
+            font-weight: 500;
+        }
+        
+        .year {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+        
+        /* Skills */
+        .skills-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            padding: 25px;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .skill-tag {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .skill-tag:hover {
+            transform: scale(1.05);
+            background-color: var(--primary-color);
+        }
+        
+        /* Certifications */
+        .certifications-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            padding: 25px;
+        }
+        
+        .cert-list {
+            list-style-position: inside;
+            margin-top: 15px;
+        }
+        
+        .cert-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .cert-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        /* Internship */
+        .internship-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            padding: 25px;
+        }
+        
+        .internship-title {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .internship-period {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Projects */
+        .projects-container {
+            margin-top: 20px;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        
+        .project-card.active {
+            border-left: 5px solid var(--accent-color);
+        }
+        
+        .project-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .project-title i {
+            transition: var(--transition);
+        }
+        
+        .project-card.active .project-title i {
+            transform: rotate(180deg);
+        }
+        
+        .project-description {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .project-card.active .project-description {
+            max-height: 200px;
+            margin-top: 15px;
+        }
+        
+        /* Declaration */
+        .declaration {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            padding: 25px;
+            font-style: italic;
+            text-align: center;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        .footer-text {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        /* Dark mode toggle */
+        .theme-switch {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+            z-index: 99;
+            transition: var(--transition);
+        }
+        
+        .theme-switch:hover {
+            transform: scale(1.1);
+        }
+        
+        body.dark-mode {
+            --text-color: #ecf0f1;
+            --light-bg: #2c3e50;
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --accent-color: #e74c3c;
+        }
+        
+        body.dark-mode .education-card,
+        body.dark-mode .skills-container,
+        body.dark-mode .certifications-container,
+        body.dark-mode .internship-container,
+        body.dark-mode .project-card,
+        body.dark-mode .declaration,
+        body.dark-mode .objectives,
+        body.dark-mode nav {
+            background-color: #34495e;
+            color: var(--light-text);
+        }
+        
+        body.dark-mode .university,
+        body.dark-mode .internship-period {
+            color: #bdc3c7;
+        }
+        
+        body.dark-mode .nav-links li a {
+            color: var(--light-text);
+        }
+        
+        body.dark-mode .nav-links li a:hover,
+        body.dark-mode .nav-links li a.active {
+            background-color: var(--secondary-color);
+        }
+        
+        /* Print styles */
+        @media print {
+            nav, .theme-switch {
+                display: none;
+            }
+            
+            header {
+                padding: 20px 0;
+            }
+            
+            .section {
+                opacity: 1;
+                transform: none;
+                page-break-inside: avoid;
+                margin-bottom: 20px;
+            }
+            
+            .project-card .project-description {
+                max-height: none;
+                display: block;
+                margin-top: 15px;
+            }
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .nav-links {
+                gap: 5px;
+            }
+            
+            .nav-links li a {
+                padding: 8px 10px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-bg"></div>
+        <div class="header-content container">
+            <div class="profile-pic">
+                <div class="avatar-placeholder">SS</div>
+            </div>
+            <h1 class="name">Sneha Shinde</h1>
+            <h2 class="title">Electronics Engineering Student</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>snehashinde8984@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>9834553937</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Mumbai, India</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#about" class="active">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Objectives Section -->
+        <section id="about" class="section">
+            <h2 class="section-title">Objectives</h2>
+            <div class="objectives">
+                <p>To enhance knowledge and skills, contributing to both organizational success and personal growth, while developing the ability to thrive in any environment.</p>
+            </div>
+        </section>
+        
+        <!-- Education Section -->
+        <section id="education" class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3 class="education-level">B.E Electronics Engineering</h3>
+                    <p class="college">Vidyalankar Institute Of Technology Mumbai Wadala (East)</p>
+                    <p class="university">Mumbai University</p>
+                    <p class="percentage">60% (till 2nd to 7th sem)</p>
+                    <p class="year">2025</p>
+                </div>
+                <div class="education-card">
+                    <h3 class="education-level">Diploma in Electronics Engineering</h3>
+                    <p class="college">Dr. Panjabrao Deshmukh Polytechnic Amravati</p>
+                    <p class="university">MSBTE</p>
+                    <p class="percentage">77.88%</p>
+                    <p class="year">2022</p>
+                </div>
+                <div class="education-card">
+                    <h3 class="education-level">HSC</h3>
+                    <p class="college">Vidyabharti College Amravati</p>
+                    <p class="university">Maharashtra State Board</p>
+                    <p class="percentage">60%</p>
+                    <p class="year">2018</p>
+                </div>
+                <div class="education-card">
+                    <h3 class="education-level">SSC</h3>
+                    <p class="college">Panchasheel Vidyalaya Kurum</p>
+                    <p class="university">Maharashtra State Board</p>
+                    <p class="percentage">70.80%</p>
+                    <p class="year">2016</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-container">
+                <div class="skills-list">
+                    <div class="skill-tag">Python</div>
+                    <div class="skill-tag">SQL</div>
+                    <div class="skill-tag">C</div>
+                    <div class="skill-tag">Artificial Intelligence</div>
+                    <div class="skill-tag">HTML, CSS</div>
+                    <div class="skill-tag">Embedded System (Basic)</div>
+                    <div class="skill-tag">Team Player</div>
+                    <div class="skill-tag">Microsoft Office</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Certifications Section -->
+        <section id="certifications" class="section">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certifications-container">
+                <ul class="cert-list">
+                    <li>Paper Presentation</li>
+                    <li>Circuit Debugging</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Experience Section -->
+        <section id="experience" class="section">
+            <h2 class="section-title">Internship</h2>
+            <div class="internship-container">
+                <h3 class="internship-title">
+                    Artificial Intelligence
+                    <span class="internship-period">Aug to Sept 2024</span>
+                </h3>
+                <p>The AI internship was a challenging yet rewarding experience. I worked on cutting edge projects involving machine learning and data analysis which allowed me to apply theoretical knowledge to real-world problems.</p>
+            </div>
+        </section>
+        
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <h3 class="project-title">
+                        Robotics Arm
+                        <i class="fas fa-chevron-down"></i>
+                    </h3>
+                    <div class="project-description">
+                        <p>I developed a project focused on a robotic arm capable of picking and placing objects, which I controlled through a mobile device. This project involved integrating hardware with software, allowing for precise manipulation of the arm via a user-friendly mobile interface.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3 class="project-title">
+                        MIT App Inventor
+                        <i class="fas fa-chevron-down"></i>
+                    </h3>
+                    <div class="project-description">
+                        <p>I worked on a project using MIT App Inventor to develop an app that assists students in searching for electronic components. The app provides detailed information about various components, including descriptions, specifications, and images.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3 class="project-title">
+                        Digital Water Flow Control and Detection
+                        <i class="fas fa-chevron-down"></i>
+                    </h3>
+                    <div class="project-description">
+                        <p>The system consists of Arduino UNO Board as main controller, ESP8266 is Wi-Fi module used to send data to cloud server, Flow meter is present at the input side to measure the rate of flow of water for monitoring purpose, it measures the water flow rate and send the data in digital pulses to the controller.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3 class="project-title">
+                        Digital Solenoid Door Lock System
+                        <i class="fas fa-chevron-down"></i>
+                    </h3>
+                    <div class="project-description">
+                        <p>Designed a secure, IoT-enabled solenoid door lock system with remote access and real-time monitoring.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Declaration Section -->
+        <section class="section">
+            <h2 class="section-title">Declaration</h2>
+            <div class="declaration">
+                <p>I hereby declare that the above-mentioned information is true to the best of my knowledge and belief.</p>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="footer-text">© 2025 Sneha Shinde - All Rights Reserved</p>
+        </div>
+    </footer>
+    
+    <!-- Theme Toggle Button -->
+    <div class="theme-switch">
+        <i class="fas fa-moon"></i>
+    </div>
+    
+    <script>
+        // Wait for DOM to load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation active state
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const sections = document.querySelectorAll('.section');
+            
+            // Smooth scrolling
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active link
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Intersection Observer for sections
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Update active nav link
+                        const id = entry.target.getAttribute('id');
+                        if (id) {
+                            navLinks.forEach(link => {
+                                link.classList.remove('active');
+                                if (link.getAttribute('href') === '#' + id) {
+                                    link.classList.add('active');
+                                }
+                            });
+                        }
+                    }
+                });
+            }, observerOptions);
+            
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+            
+            // Project cards toggle
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            projectCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+            });
+            
+            // Dark mode toggle
+            const themeSwitch = document.querySelector('.theme-switch');
+            const themeIcon = themeSwitch.querySelector('i');
+            
+            themeSwitch.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+            
+            // Animation for skills tags
+            const skillTags = document.querySelectorAll('.skill-tag');
+            skillTags.forEach((tag, index) => {
+                tag.style.animation = `fadeInUp 0.5s ${index * 0.1}s both`;
+            });
+            
+            // Print functionality
+            window.addEventListener('keydown', function(e) {
+                // Ctrl+P or Command+P
+                if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                    // Open all project descriptions before printing
+                    projectCards.forEach(card => {
+                        card.classList.add('active');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
